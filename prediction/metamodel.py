@@ -1,7 +1,3 @@
-import numpy as np
-import prediction_strategies
-import sklearn
-
 """
 task of this module:
 1) use of all strategies to predict immidiate market trend

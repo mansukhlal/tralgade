@@ -1,7 +1,3 @@
-import pandas as pd
-import time
-from bitfinex_client import data_client
-
 """
 Task of this module:
 1) Get data from the bitfinex client and manage it in csv files
@@ -10,14 +6,13 @@ Task of this module:
 
 
 class DataRetriever:
-
     def __init__(self):
         pass
 
     def get_data_lake(self, start_time, end_time):
         pass
 
-    def data_magnification(self, df, mag):
+    def magnify(self, df, mag):
         pass
 
     def read_data(self):
@@ -25,7 +20,6 @@ class DataRetriever:
 
     def get_major_swings(self):
         pass
-
 
 
 class DataLogger:
@@ -45,18 +39,15 @@ class DataLogger:
         # for candle in _get_candles
         # get df and run mapper
         # save
+        pass
 
     def register_mapper(self, mappers):
         self.mappers += mappers
 
 
-
-
 def get_major_swings(self, candles):
     pass
 
+
 def get_market_turns(self, candles):
     pass
-
-dl = DataLogger()
-dl.register_mapper([get_major_swings, get_market_turns])
