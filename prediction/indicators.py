@@ -53,6 +53,53 @@ def get_RSI(price_df, window = None, avg_tech = "EWMA", Pcat = "close"):
     return RSI
 
 
+def is_bullish_engulfing(self, candle_prev, candle_next, bollinger_lb):
+    if candle_next.close - candle_next.open > 0:
+        bb_outpercent = (bollinger_lb - candle_prev.close) / (candle_prev.open - candle_prev.close)
+        engulf_ratio = (candle_next.close - candle_next.open)/(candle_prev.open - candle_prev.close)
+        if bb_outpercent > 0.3 and engulf_ratio > 1.3:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+
+def is_bearish_engulfing(self, candle_prev, candle_next, bollinger_ub):
+    if candle_next.close - candle_next.open < 0:
+        bb_outpercent = (candle_prev.close - bollinger_ub) / (candle_prev.close - candle_prev.open)
+        engulf_ratio = (candle_next.open - candle_next.close) / (candle_prev.close - candle_prev.open)
+        if bb_outpercent > 0.3 and engulf_ratio > 1.3:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+def is_doji_break(self, last2_candles, current_candle):
+    is_doji = 0
+    for index, rows in last2_candles.iterrows():
+        if 0.002 > 1 - (rows.close/rows.open) > -0.002:
+            is_doji +=1
+    if is_doji == 2 and abs(1 - current_candle.open/current_candle.close) > 0.01:
+        return True
+    else:
+        return False
+
+
+
+
+def is_doji_hammer(self, ):
+    pass
+
+
+def market_trend(self):
+    pass
+
+
+
 def get_supertrend(self):
     # series_high, series_low = self.price_df["hig"], self.price_df["low"]
     # i = 0
